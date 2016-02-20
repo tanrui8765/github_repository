@@ -1,4 +1,4 @@
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.*;
 
 public class PercolationStats {
 	
@@ -74,10 +74,10 @@ public class PercolationStats {
 	public static void main(String[] args) {
 		int N=0;
 		int T=0;
-		StdOut.println("Enter Main, PercolateStats start...");
+//		StdOut.println("Enter Main, PercolateStats start... \nPlease Enter Side Num & Stat Times:");
 		N=StdIn.readInt();
 		T=StdIn.readInt();
-		StdOut.println("Params Received, N is "+N+", T is "+T+".");
+//		StdOut.println("Params Received, N is "+N+", T is "+T+".");
 		PercolationStats pl_stats = new PercolationStats(N,T);
 		
 		StdOut.println("% java PercolationStats "+N+" "+T);
