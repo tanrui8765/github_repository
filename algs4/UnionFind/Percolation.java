@@ -91,17 +91,17 @@ public class Percolation {
 	}
 	
 	private void union_virtual(int pt1_row, int pt1_col, int virtual_site) {
-//		int root = find(pt1_row,pt1_col);
-		int index = (pt1_col-1)+(pt1_row-1)*col_num+1;
+		int root = find(pt1_row,pt1_col);	// this index is the root of the point, the goal is to change the parent of this root.
+//		int index = (pt1_col-1)+(pt1_row-1)*col_num+1;
 		
 		if((virtual_site == virtual_top_site)) {
-			parent[index] = virtual_top_site;
-			size[virtual_site] += size[index];
+			parent[root] = virtual_top_site;
+			size[virtual_site] += size[root];
 			count--;
 		}
 		else if(virtual_site == virtual_bottom_site) {
-			parent[index] = virtual_bottom_site;
-			size[virtual_site] += size[index];
+			parent[root] = virtual_bottom_site;
+			size[virtual_site] += size[root];
 			count--;
 		}
 		else {
@@ -143,36 +143,36 @@ public class Percolation {
 				if(isOpen(row,col+1))union(row,col+1,row,col);	// Right Point Check
 			}
 			else if((row==row_num)&&((col>=2)&&(col<=(col_num-1)))) {
+				if(isOpen(row-1,col))union(row-1,col,row,col);	// Upper Point Check
 				if(isOpen(row,col-1))union(row,col-1,row,col);	// Left Point Check
 				if(isOpen(row,col+1))union(row,col+1,row,col);	// Right Point Check
-				if(isOpen(row-1,col))union(row-1,col,row,col);	// Upper Point Check
 			}
 			else if(((row>=2)&&(row<=(row_num-1)))&&(col==1)) {
-				if(isOpen(row,col+1))union(row,col+1,row,col);	// Right Point Check
 				if(isOpen(row-1,col))union(row-1,col,row,col);	// Upper Point Check
 				if(isOpen(row+1,col))union(row+1,col,row,col);	// Lower Point Check
+				if(isOpen(row,col+1))union(row,col+1,row,col);	// Right Point Check
 			}
 			else if(((row>=2)&&(row<=(row_num-1)))&&(col==col_num)) {
-				if(isOpen(row,col-1))union(row,col-1,row,col);	// Left Point Check
 				if(isOpen(row-1,col))union(row-1,col,row,col);	// Upper Point Check
 				if(isOpen(row+1,col))union(row+1,col,row,col);	// Lower Point Check
+				if(isOpen(row,col-1))union(row,col-1,row,col);	// Left Point Check
 			}
 			// Points with 2 neighbors;
 			else if((row==1)&&(col==1)) {
-				if(isOpen(row,col+1))union(row,col+1,row,col);	// Right Point Check
 				if(isOpen(row+1,col))union(row+1,col,row,col);	// Lower Point Check
+				if(isOpen(row,col+1))union(row,col+1,row,col);	// Right Point Check
 			}
 			else if((row==row_num)&&(col==col_num)) {
-				if(isOpen(row,col-1))union(row,col-1,row,col);	// Left Point Check
 				if(isOpen(row-1,col))union(row-1,col,row,col);	// Upper Point Check
+				if(isOpen(row,col-1))union(row,col-1,row,col);	// Left Point Check
 			}
 			else if((row==1)&&(col==col_num)) {
 				if(isOpen(row,col-1))union(row,col-1,row,col);	// Left Point Check
 				if(isOpen(row+1,col))union(row+1,col,row,col);	// Lower Point Check
 			}
 			else if((row==row_num)&&(col==1)) {
-				if(isOpen(row,col+1))union(row,col+1,row,col);	// Right Point Check
 				if(isOpen(row-1,col))union(row-1,col,row,col);	// Upper Point Check
+				if(isOpen(row,col+1))union(row,col+1,row,col);	// Right Point Check
 			}
 		}
 	}
